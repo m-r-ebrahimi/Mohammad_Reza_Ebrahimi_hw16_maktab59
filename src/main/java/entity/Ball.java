@@ -2,14 +2,19 @@ package entity;
 
 import entity.core.BaseEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
 public class Ball extends BaseEntity {
     @Column
     private String ballName;
+
+    /*@OneToOne
+    private Match match;*/
 
     public Ball(String ballName) {
         this.ballName = ballName;
@@ -41,12 +46,7 @@ public class Ball extends BaseEntity {
         return Objects.hash(ballName);
     }
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "ballName='" + ballName + '\'' +
-                '}' + "\n";
-    }
+
 
     @Override
     public String getClassName() {

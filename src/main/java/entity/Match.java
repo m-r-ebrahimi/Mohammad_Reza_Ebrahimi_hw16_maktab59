@@ -2,42 +2,35 @@ package entity;
 
 import entity.core.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Match extends BaseEntity {
+
     @Column
-    private int matchId;
-    @Column
+    private String name;
+
+
+    /*@Column
     private Date matchDate;
-    @Column
-    private int stadiumId;
-    @Column
-    private int teamHomeId;
-    @Column
-    private int teamAwayId;
-    @Column
-    private int ballId;
+    @ManyToOne
+    private Stadium stadium;
+    @ManyToOne
+    private Team teamHome;
+    @ManyToOne
+    private Team teamAway;
+    @OneToOne
+    private Ball ball;
     @Column
     private int teamHomeGoals;
     @Column
     private int teamAwayGoals;
     @Column
-    private int refereeId;
-    @Column
     private int teamHomePoints;
     @Column
     private int teamAwayPoints;
 
-    public int getMatchId() {
-        return matchId;
-    }
-
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
-    }
 
     public Date getMatchDate() {
         return matchDate;
@@ -47,36 +40,36 @@ public class Match extends BaseEntity {
         this.matchDate = matchDate;
     }
 
-    public int getStadiumId() {
-        return stadiumId;
+    public Stadium getStadium() {
+        return stadium;
     }
 
-    public void setStadiumId(int stadiumId) {
-        this.stadiumId = stadiumId;
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
     }
 
-    public int getTeamHomeId() {
-        return teamHomeId;
+    public Team getTeamHome() {
+        return teamHome;
     }
 
-    public void setTeamHomeId(int teamHomeId) {
-        this.teamHomeId = teamHomeId;
+    public void setTeamHome(Team teamHome) {
+        this.teamHome = teamHome;
     }
 
-    public int getTeamAwayId() {
-        return teamAwayId;
+    public Team getTeamAway() {
+        return teamAway;
     }
 
-    public void setTeamAwayId(int teamAwayId) {
-        this.teamAwayId = teamAwayId;
+    public void setTeamAway(Team teamAway) {
+        this.teamAway = teamAway;
     }
 
-    public int getBallId() {
-        return ballId;
+    public Ball getBall() {
+        return ball;
     }
 
-    public void setBallId(int ballId) {
-        this.ballId = ballId;
+    public void setBall(Ball ball) {
+        this.ball = ball;
     }
 
     public int getTeamHomeGoals() {
@@ -95,14 +88,6 @@ public class Match extends BaseEntity {
         this.teamAwayGoals = teamAwayGoals;
     }
 
-    public int getRefereeId() {
-        return refereeId;
-    }
-
-    public void setRefereeId(int refereeId) {
-        this.refereeId = refereeId;
-    }
-
     public int getTeamHomePoints() {
         return teamHomePoints;
     }
@@ -117,24 +102,8 @@ public class Match extends BaseEntity {
 
     public void setTeamAwayPoints(int teamAwayPoints) {
         this.teamAwayPoints = teamAwayPoints;
-    }
+    }*/
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "matchId=" + matchId +
-                ", matchDate=" + matchDate +
-                ", stadiumId=" + stadiumId +
-                ", teamHomeId=" + teamHomeId +
-                ", teamAwayId=" + teamAwayId +
-                ", ballId=" + ballId +
-                ", teamHomeGoals=" + teamHomeGoals +
-                ", teamAwayGoals=" + teamAwayGoals +
-                ", refereeId=" + refereeId +
-                ", teamHomePoints=" + teamHomePoints +
-                ", teamAwayPoints=" + teamAwayPoints +
-                '}' + "\n";
-    }
 
     @Override
     public String getClassName() {

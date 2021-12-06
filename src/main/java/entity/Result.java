@@ -2,15 +2,12 @@ package entity;
 
 import entity.core.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Result extends BaseEntity {
-    @Column
-    private int teamId;
-    @Column
-    private int matchId;
+    @ManyToOne
+    private Team team;
     @Column
     private int point;
     @Column
@@ -18,21 +15,15 @@ public class Result extends BaseEntity {
     @Column
     private int goalAgainst;
 
-    public int getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
-    public int getMatchId() {
-        return matchId;
-    }
 
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
-    }
 
     public int getPoint() {
         return point;
@@ -58,16 +49,7 @@ public class Result extends BaseEntity {
         this.goalAgainst = goalAgainst;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "teamId=" + teamId +
-                ", matchId=" + matchId +
-                ", point=" + point +
-                ", goalFor=" + goalFor +
-                ", goalAgainst=" + goalAgainst +
-                '}';
-    }
+
 
     @Override
     public String getClassName() {

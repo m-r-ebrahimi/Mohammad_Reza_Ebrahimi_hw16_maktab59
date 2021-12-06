@@ -4,19 +4,13 @@ import entity.core.Person;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Player extends Person {
-    @Column
-    private int playerId;
-
-    public int getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
-    }
+    @ManyToOne
+    private Team team;
 
     @Override
     public String getClassName() {
@@ -25,8 +19,6 @@ public class Player extends Person {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "playerId=" + playerId +
-                '}' + "\n";
+        return super.toString();
     }
 }

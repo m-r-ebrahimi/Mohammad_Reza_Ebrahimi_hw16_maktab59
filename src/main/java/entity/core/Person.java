@@ -1,15 +1,16 @@
 package entity.core;
 
+import entity.Team;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 @MappedSuperclass
 public abstract class Person extends BaseEntity {
     @Column
     private String name;
-    @Column
-    private int teamId;
     @Column
     private double salary;
     @Column
@@ -29,14 +30,6 @@ public abstract class Person extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
     }
 
     public double getSalary() {
@@ -82,10 +75,9 @@ public abstract class Person extends BaseEntity {
     public String toString() {
         return super.toString() +
                 "name='" + name + '\'' +
-                ", teamId=" + teamId +
                 ", salary=" + salary +
                 ", price=" + price +
                 ", hireDate=" + hireDate +
-                ", hireExpiryDate=" + hireExpiryDate;
+                ", hireExpiryDate=" + hireExpiryDate + "\n";
     }
 }

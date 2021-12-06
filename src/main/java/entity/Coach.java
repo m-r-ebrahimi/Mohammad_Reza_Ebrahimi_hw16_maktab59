@@ -2,18 +2,22 @@ package entity;
 
 import entity.core.Person;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Coach extends Person {
-    private int coachId;
+    @OneToOne
+    private Team team;
 
-    public int getCoachId() {
-        return coachId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setCoachId(int coachId) {
-        this.coachId = coachId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     @Override
@@ -23,8 +27,6 @@ public class Coach extends Person {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "coachId=" + coachId +
-                '}' + "\n";
+        return super.toString();
     }
 }

@@ -1,5 +1,19 @@
+import entity.Match;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Main.class.getSimpleName());
+        EntityManagerFactory entityManagerFactory =
+                Persistence.createEntityManagerFactory("jpa-maktab");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        new Match();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        entityManagerFactory.close();
     }
 }
