@@ -3,7 +3,7 @@ package entity.core;
 import javax.persistence.*;
 
 @MappedSuperclass
-public class BaseEntity implements BaseEntityInterface<Integer> {
+public abstract class BaseEntity implements BaseEntityInterface<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -12,9 +12,8 @@ public class BaseEntity implements BaseEntityInterface<Integer> {
 
     @Override
     public String toString() {
-        return "BaseEntity{" +
-                "id=" + id +
-                '}';
+        return getClassName() + "{" +
+                "id=" + id;
     }
 
     @Override
@@ -26,4 +25,6 @@ public class BaseEntity implements BaseEntityInterface<Integer> {
     public Integer getId() {
         return id;
     }
+
+    public abstract String getClassName();
 }
