@@ -2,27 +2,17 @@ package entity;
 
 import entity.core.BaseEntity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Ball extends BaseEntity {
     @Column
     private String ballName;
+    @OneToMany(mappedBy = "ball", cascade = CascadeType.ALL)
+    private List<PlaySoccer> games;
 
-    /*@OneToOne
-    private Match match;*/
-
-    public Ball(String ballName) {
-        this.ballName = ballName;
-    }
-
-    public Ball() {
-
-    }
 
 
     public String getBallName() {
@@ -47,9 +37,16 @@ public class Ball extends BaseEntity {
     }
 
 
-
     @Override
     public String getClassName() {
         return Ball.class.getSimpleName();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "ballName='" + ballName + '\'' +
+                ", games=" + games +
+                '}'+ "\n";
     }
 }

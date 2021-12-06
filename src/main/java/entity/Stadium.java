@@ -11,12 +11,19 @@ public class Stadium extends BaseEntity {
     private String name;
     @Column
     private String cityName;
-    /*@OneToMany( cascade = CascadeType.ALL)
-    private List<Match> match;*/
-
-
+    @OneToMany(mappedBy = "stadium", cascade = CascadeType.ALL)
+    private List<PlaySoccer> games;
     @Override
     public String getClassName() {
         return Stadium.class.getSimpleName();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "name='" + name + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", games=" + games +
+                '}'+ "\n";
     }
 }

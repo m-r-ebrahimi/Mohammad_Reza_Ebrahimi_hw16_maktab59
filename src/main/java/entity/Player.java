@@ -19,6 +19,8 @@ public class Player extends Person {
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString()+
+                "team=" + team +
+                '}'+ "\n";
     }
 }

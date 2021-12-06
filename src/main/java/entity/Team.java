@@ -11,10 +11,12 @@ public class Team extends BaseEntity {
     private String name;
     @Column
     private String cityName;
-    /*@OneToMany(cascade = CascadeType.ALL)
-    private List<Match> match;*/
+    @Column
+    private int score;
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<Result> results;
+    private List<PlaySoccer> homeGames;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<PlaySoccer> awayGames;
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Player> players;
     @OneToOne(mappedBy = "team", cascade = CascadeType.ALL)
@@ -45,9 +47,21 @@ public class Team extends BaseEntity {
     }
 
 
-
     @Override
     public String getClassName() {
         return Team.class.getSimpleName();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                "name='" + name + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", score=" + score +
+                ", homeGames=" + homeGames +
+                ", awayGames=" + awayGames +
+                ", players=" + players +
+                ", coach=" + coach +
+                '}'+ "\n";
     }
 }
