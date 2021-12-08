@@ -24,9 +24,9 @@ public class PlayerDao extends BaseDao<Player, Integer> {
     public List<Player> getExpensivePlayers() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Player> c = cb.createQuery(Player.class);
-        Root<Player> emp = c.from(Player.class);
-        c.select(emp)
-                .where(cb.greaterThanOrEqualTo(emp.get("salary"),1000));
+        Root<Player> root = c.from(Player.class);
+        c.select(root)
+                .where(cb.greaterThanOrEqualTo(root.get("salary"),1000));
         TypedQuery<Player> typed = getEntityManager().createQuery(c);
         return typed.getResultList();
 

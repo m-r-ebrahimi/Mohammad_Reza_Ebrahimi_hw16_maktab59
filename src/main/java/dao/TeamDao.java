@@ -23,9 +23,9 @@ public class TeamDao extends BaseDao<Team, Integer> {
     public List<Object[]> getCitiesTeams() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Object[]> c = cb.createQuery(Object[].class);
-        Root<Team> emp = c.from(Team.class);
-        c.multiselect(emp.get("cityName"), cb.count(emp.get("cityName")))
-                .groupBy(emp.get("cityName"));
+        Root<Team> root = c.from(Team.class);
+        c.multiselect(root.get("cityName"), cb.count(root.get("cityName")))
+                .groupBy(root.get("cityName"));
         TypedQuery<Object[]> typed = getEntityManager().createQuery(c);
         return typed.getResultList();
     }
@@ -33,8 +33,8 @@ public class TeamDao extends BaseDao<Team, Integer> {
     public List<Object[]> getTeamsPoints() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Object[]> c = cb.createQuery(Object[].class);
-        Root<Team> emp = c.from(Team.class);
-        c.multiselect(emp.get("name"), emp.get("score"));
+        Root<Team> root = c.from(Team.class);
+        c.multiselect(root.get("name"), root.get("score"));
 
         TypedQuery<Object[]> typed = getEntityManager().createQuery(c);
         return typed.getResultList();
