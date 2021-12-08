@@ -12,8 +12,10 @@ public abstract class BaseEntity implements BaseEntityInterface<Integer> {
 
     @Override
     public String toString() {
-        return getClassName() + "{" +
-                "id=" + id;
+        return "\n"+
+                getClassName() + "{" +
+                "id=" + id+
+                ", ";
     }
 
     @Override

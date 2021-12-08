@@ -14,7 +14,6 @@ public class Ball extends BaseEntity {
     private List<PlaySoccer> games;
 
 
-
     public String getBallName() {
         return ballName;
     }
@@ -46,7 +45,7 @@ public class Ball extends BaseEntity {
     public String toString() {
         return super.toString() +
                 "ballName='" + ballName + '\'' +
-                ", games=" + games +
-                '}'+ "\n";
+                '}'+
+                "\n";
     }
 }

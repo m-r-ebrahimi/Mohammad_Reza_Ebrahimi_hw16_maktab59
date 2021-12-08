@@ -28,7 +28,8 @@ public class Coach extends Person {
     @Override
     public String toString() {
         return super.toString() +
-                "team=" + team +
-                '}' + "\n";
+                "team=" + team.getName()+
+                '}'+
+                "\n";
     }
 }

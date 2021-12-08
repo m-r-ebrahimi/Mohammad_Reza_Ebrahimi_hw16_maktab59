@@ -12,6 +12,10 @@ public class Player extends Person {
     @ManyToOne
     private Team team;
 
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     @Override
     public String getClassName() {
         return Player.class.getSimpleName();
@@ -19,8 +23,10 @@ public class Player extends Person {
 
     @Override
     public String toString() {
-        return super.toString()+
-                "team=" + team +
-                '}'+ "\n";
+        return super.toString() +
+                "team=" + team.getName() +
+                '}'+
+                "\n";
     }
+
 }

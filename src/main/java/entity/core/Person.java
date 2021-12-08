@@ -78,6 +78,7 @@ public abstract class Person extends BaseEntity {
                 ", salary=" + salary +
                 ", price=" + price +
                 ", hireDate=" + hireDate +
-                ", hireExpiryDate=" + hireExpiryDate;
+                ", hireExpiryDate=" + hireExpiryDate+
+                ", ";
     }
 }

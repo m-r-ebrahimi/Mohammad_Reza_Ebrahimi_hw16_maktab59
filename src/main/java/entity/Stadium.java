@@ -13,6 +13,31 @@ public class Stadium extends BaseEntity {
     private String cityName;
     @OneToMany(mappedBy = "stadium", cascade = CascadeType.ALL)
     private List<PlaySoccer> games;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public List<PlaySoccer> getGames() {
+        return games;
+    }
+
+    public void setGames(List<PlaySoccer> games) {
+        this.games = games;
+    }
+
     @Override
     public String getClassName() {
         return Stadium.class.getSimpleName();
@@ -23,7 +48,7 @@ public class Stadium extends BaseEntity {
         return super.toString() +
                 "name='" + name + '\'' +
                 ", cityName='" + cityName + '\'' +
-                ", games=" + games +
-                '}'+ "\n";
+                '}'+
+                "\n";
     }
 }

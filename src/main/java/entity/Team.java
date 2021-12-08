@@ -13,14 +13,38 @@ public class Team extends BaseEntity {
     private String cityName;
     @Column
     private int score;
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<PlaySoccer> homeGames;
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<PlaySoccer> awayGames;
+
+    @OneToMany
+    private List<PlaySoccer> games;
+
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Player> players;
     @OneToOne(mappedBy = "team", cascade = CascadeType.ALL)
     private Coach coach;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public List<PlaySoccer> getGames() {
+        return games;
+    }
+
+    public void setGames(List<PlaySoccer> games) {
+        this.games = games;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 
     public Coach getCoach() {
         return coach;
@@ -58,10 +82,10 @@ public class Team extends BaseEntity {
                 "name='" + name + '\'' +
                 ", cityName='" + cityName + '\'' +
                 ", score=" + score +
-                ", homeGames=" + homeGames +
-                ", awayGames=" + awayGames +
+                ", games=" + games +
                 ", players=" + players +
                 ", coach=" + coach +
-                '}'+ "\n";
+                '}'+
+                "\n";
     }
 }
