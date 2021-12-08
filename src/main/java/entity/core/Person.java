@@ -14,8 +14,6 @@ public abstract class Person extends BaseEntity {
     @Column
     private double salary;
     @Column
-    private double price;
-    @Column
     private Date hireDate;
     @Column
     private Date hireExpiryDate;
@@ -40,13 +38,6 @@ public abstract class Person extends BaseEntity {
         this.salary = salary;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     public Date getHireDate() {
         return hireDate;
@@ -76,9 +67,8 @@ public abstract class Person extends BaseEntity {
         return super.toString() +
                 "name='" + name + '\'' +
                 ", salary=" + salary +
-                ", price=" + price +
                 ", hireDate=" + hireDate +
-                ", hireExpiryDate=" + hireExpiryDate+
+                ", hireExpiryDate=" + hireExpiryDate +
                 ", ";
     }
 }

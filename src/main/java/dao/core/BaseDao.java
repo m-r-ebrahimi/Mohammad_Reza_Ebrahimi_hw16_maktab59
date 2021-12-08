@@ -5,7 +5,7 @@ import entity.core.BaseEntity;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public abstract class BaseDao<T extends BaseEntity,ID extends Number> implements BaseDaoInterface<T,ID> {
+public abstract class BaseDao<T extends BaseEntity, ID extends Number> implements BaseDaoInterface<T, ID> {
     private EntityManager entityManager;
 
     public BaseDao(EntityManager entityManager) {
@@ -45,7 +45,11 @@ public abstract class BaseDao<T extends BaseEntity,ID extends Number> implements
                 getEntityClass().getSimpleName()).getResultList();
     }
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
     @Override
-    public abstract Class<T> getEntityClass() ;
+    public abstract Class<T> getEntityClass();
 }
 

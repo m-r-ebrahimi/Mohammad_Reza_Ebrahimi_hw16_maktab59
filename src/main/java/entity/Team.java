@@ -78,14 +78,11 @@ public class Team extends BaseEntity {
 
     @Override
     public String toString() {
-        return super.toString()+
+        return super.toString() +
                 "name='" + name + '\'' +
                 ", cityName='" + cityName + '\'' +
                 ", score=" + score +
-                ", games=" + games +
-                ", players=" + players +
-                ", coach=" + coach +
-                '}'+
+                '}' +
                 "\n";
     }
 }

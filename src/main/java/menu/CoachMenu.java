@@ -55,9 +55,7 @@ public class CoachMenu extends Menu implements CrudMenu {
         System.out.println("Enter salary:");
         double salary=scanner.nextDouble();
         scanner.nextLine();
-        System.out.println("Enter price:");
-        double price=scanner.nextDouble();
-        scanner.nextLine();
+
         System.out.println("Enter hire date");
         Date hireDate=new Date(scanner.nextLine());
         System.out.println("Enter hire expiry date");
@@ -69,7 +67,6 @@ public class CoachMenu extends Menu implements CrudMenu {
         Coach coach = new Coach();
         coach.setName(name);
         coach.setSalary(salary);
-        coach.setPrice(price);
         coach.setHireDate(hireDate);
         coach.setHireExpiryDate(hireExpiryDate);
         coach.setTeam(new TeamService().loadById(teamId));
@@ -87,9 +84,7 @@ public class CoachMenu extends Menu implements CrudMenu {
         System.out.println("Enter new salary:");
         double salary=scanner.nextDouble();
         scanner.nextLine();
-        System.out.println("Enter new price:");
-        double price=scanner.nextDouble();
-        scanner.nextLine();
+
         System.out.println("Enter hire date");
         Date hireDate=new Date(scanner.nextLine());
         System.out.println("Enter hire expiry date");
@@ -101,7 +96,6 @@ public class CoachMenu extends Menu implements CrudMenu {
         Coach coach = new CoachService().loadById(id);
         coach.setName(name);
         coach.setSalary(salary);
-        coach.setPrice(price);
         coach.setHireDate(hireDate);
         coach.setHireExpiryDate(hireExpiryDate);
         coach.setTeam(new TeamService().loadById(teamId));

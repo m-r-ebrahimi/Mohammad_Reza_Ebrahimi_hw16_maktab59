@@ -42,6 +42,7 @@ public class Menu {
                     new PlaySoccerMenu().menu();
                     break;
                 case 7:
+                    new CriteriaMenu().menu();
                     break;
                 case 8:
                     break;

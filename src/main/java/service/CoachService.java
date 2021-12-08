@@ -12,4 +12,8 @@ public class CoachService extends CrudService<Coach,Integer> {
     public CoachDao getBaseDao() {
         return (CoachDao) super.getBaseDao();
     }
+
+    public Coach getExpensiveCoach(){
+        return new CoachDao(getEntityManager()).getMostExpensive();
+    }
 }
