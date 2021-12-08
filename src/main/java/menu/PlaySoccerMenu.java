@@ -103,26 +103,16 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
         int id=scanner.nextInt();
         scanner.nextLine();
         PlaySoccer playSoccer = new PlaySoccerService().loadById(id);
-        Team teamHome = playSoccer.getTeamHome();
-        int teamHomePoints = playSoccer.getTeamHomePoints();
-        Team teamAway = playSoccer.getTeamAway();
-        int teamAwayPoints = playSoccer.getTeamAwayPoints();
-        teamHome.setScore(teamHome.getScore() - teamHomePoints);
-        teamAway.setScore(teamAway.getScore() - teamAwayPoints);
-        new TeamService().saveOrUpdate(teamHome);
-        new TeamService().saveOrUpdate(teamAway);
 
-
-
-
+        backToPrevious(playSoccer);
         System.out.println("Enter match date:");
         Date date = new Date(scanner.nextLine());
         System.out.println("Enter stadium id:");
         Stadium stadium = new StadiumService().loadById(scanner.nextInt());
         System.out.println("Enter team (home) id:");
-        teamHome = new TeamService().loadById(scanner.nextInt());
+        Team teamHome = new TeamService().loadById(scanner.nextInt());
         System.out.println("Enter team (away) id:");
-        teamAway = new TeamService().loadById(scanner.nextInt());
+        Team teamAway = new TeamService().loadById(scanner.nextInt());
         System.out.println("Enter ball id:");
         Ball ball = new BallService().loadById(scanner.nextInt());
         scanner.nextLine();
@@ -167,14 +157,7 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
         int id=scanner.nextInt();
         scanner.nextLine();
         PlaySoccer playSoccer = new PlaySoccerService().loadById(id);
-        Team teamHome = playSoccer.getTeamHome();
-        int teamHomePoints = playSoccer.getTeamHomePoints();
-        Team teamAway = playSoccer.getTeamAway();
-        int teamAwayPoints = playSoccer.getTeamAwayPoints();
-        teamHome.setScore(teamHome.getScore() - teamHomePoints);
-        teamAway.setScore(teamAway.getScore() - teamAwayPoints);
-        new TeamService().saveOrUpdate(teamHome);
-        new TeamService().saveOrUpdate(teamAway);
+        backToPrevious(playSoccer);
         new PlaySoccerService().delete(id);
     }
 
@@ -189,5 +172,16 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
     @Override
     public void loadAll() {
         System.out.println(new PlaySoccerService().loadAll());
+    }
+
+    private void backToPrevious(PlaySoccer playSoccer){
+        Team teamHome = playSoccer.getTeamHome();
+        int teamHomePoints = playSoccer.getTeamHomePoints();
+        Team teamAway = playSoccer.getTeamAway();
+        int teamAwayPoints = playSoccer.getTeamAwayPoints();
+        teamHome.setScore(teamHome.getScore() - teamHomePoints);
+        teamAway.setScore(teamAway.getScore() - teamAwayPoints);
+        new TeamService().saveOrUpdate(teamHome);
+        new TeamService().saveOrUpdate(teamAway);
     }
 }
