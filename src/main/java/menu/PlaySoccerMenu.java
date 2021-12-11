@@ -6,7 +6,6 @@ import entity.Stadium;
 import entity.Team;
 import menu.base.CrudMenu;
 import menu.base.Menu;
-import service.*;
 
 import java.util.Date;
 
@@ -54,13 +53,13 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
         System.out.println("Enter match date:");
         Date date = new Date(scanner.nextLine());
         System.out.println("Enter stadium id:");
-        Stadium stadium = new StadiumService().loadById(scanner.nextInt());
+        Stadium stadium = (Stadium) stadiumServiceInstance.loadById(scanner.nextInt());
         System.out.println("Enter team (home) id:");
-        Team teamHome = new TeamService().loadById(scanner.nextInt());
+        Team teamHome = (Team) teamServiceInstance.loadById(scanner.nextInt());
         System.out.println("Enter team (away) id:");
-        Team teamAway = new TeamService().loadById(scanner.nextInt());
+        Team teamAway = (Team) teamServiceInstance.loadById(scanner.nextInt());
         System.out.println("Enter ball id:");
-        Ball ball = new BallService().loadById(scanner.nextInt());
+        Ball ball = (Ball) ballServiceInstance.loadById(scanner.nextInt());
         scanner.nextLine();
         System.out.println("Enter team home - away goals:");
         String goals = scanner.nextLine();
@@ -90,31 +89,31 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
         playSoccer.setTeamAwayGoals(teamAwayGoal);
         playSoccer.setTeamHomePoints(teamHomePoint);
         playSoccer.setTeamAwayPoints(teamAwayPoint);
-        new PlaySoccerService().saveOrUpdate(playSoccer);
+        playSoccerServiceInstance.saveOrUpdate(playSoccer);
         teamHome.setScore(teamHome.getScore() + teamHomePoint);
         teamAway.setScore(teamAway.getScore() + teamAwayPoint);
-        new TeamService().saveOrUpdate(teamHome);
-        new TeamService().saveOrUpdate(teamAway);
+        teamServiceInstance.saveOrUpdate(teamHome);
+        teamServiceInstance.saveOrUpdate(teamAway);
     }
 
     @Override
     public void update() throws IllegalAccessException {
         System.out.println("Enter match id:");
-        int id=scanner.nextInt();
+        int id = scanner.nextInt();
         scanner.nextLine();
-        PlaySoccer playSoccer = new PlaySoccerService().loadById(id);
+        PlaySoccer playSoccer = (PlaySoccer) playSoccerServiceInstance.loadById(id);
 
         backToPrevious(playSoccer);
         System.out.println("Enter match date:");
         Date date = new Date(scanner.nextLine());
         System.out.println("Enter stadium id:");
-        Stadium stadium = new StadiumService().loadById(scanner.nextInt());
+        Stadium stadium = (Stadium) stadiumServiceInstance.loadById(scanner.nextInt());
         System.out.println("Enter team (home) id:");
-        Team teamHome = new TeamService().loadById(scanner.nextInt());
+        Team teamHome = (Team) teamServiceInstance.loadById(scanner.nextInt());
         System.out.println("Enter team (away) id:");
-        Team teamAway = new TeamService().loadById(scanner.nextInt());
+        Team teamAway = (Team) teamServiceInstance.loadById(scanner.nextInt());
         System.out.println("Enter ball id:");
-        Ball ball = new BallService().loadById(scanner.nextInt());
+        Ball ball = (Ball) ballServiceInstance.loadById(scanner.nextInt());
         scanner.nextLine();
         System.out.println("Enter team home - away goals:");
         String goals = scanner.nextLine();
@@ -144,21 +143,21 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
         playSoccer.setTeamAwayGoals(teamAwayGoal);
         playSoccer.setTeamHomePoints(teamHomePoint);
         playSoccer.setTeamAwayPoints(teamAwayPoint);
-        new PlaySoccerService().saveOrUpdate(playSoccer);
+        playSoccerServiceInstance.saveOrUpdate(playSoccer);
         teamHome.setScore(teamHome.getScore() + teamHomePoint);
         teamAway.setScore(teamAway.getScore() + teamAwayPoint);
-        new TeamService().saveOrUpdate(teamHome);
-        new TeamService().saveOrUpdate(teamAway);
+        teamServiceInstance.saveOrUpdate(teamHome);
+        teamServiceInstance.saveOrUpdate(teamAway);
     }
 
     @Override
     public void delete() throws IllegalAccessException {
         System.out.println("Enter match id:");
-        int id=scanner.nextInt();
+        int id = scanner.nextInt();
         scanner.nextLine();
-        PlaySoccer playSoccer = new PlaySoccerService().loadById(id);
+        PlaySoccer playSoccer = (PlaySoccer) playSoccerServiceInstance.loadById(id);
         backToPrevious(playSoccer);
-        new PlaySoccerService().delete(id);
+        playSoccerServiceInstance.delete(id);
     }
 
     @Override
@@ -166,22 +165,22 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
         System.out.println("Enter match id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        System.out.println(new PlaySoccerService().loadById(id));
+        System.out.println(playSoccerServiceInstance.loadById(id));
     }
 
     @Override
     public void loadAll() {
-        System.out.println(new PlaySoccerService().loadAll());
+        System.out.println(playSoccerServiceInstance.loadAll());
     }
 
-    private void backToPrevious(PlaySoccer playSoccer){
+    private void backToPrevious(PlaySoccer playSoccer) {
         Team teamHome = playSoccer.getTeamHome();
         int teamHomePoints = playSoccer.getTeamHomePoints();
         Team teamAway = playSoccer.getTeamAway();
         int teamAwayPoints = playSoccer.getTeamAwayPoints();
         teamHome.setScore(teamHome.getScore() - teamHomePoints);
         teamAway.setScore(teamAway.getScore() - teamAwayPoints);
-        new TeamService().saveOrUpdate(teamHome);
-        new TeamService().saveOrUpdate(teamAway);
+        teamServiceInstance.saveOrUpdate(teamHome);
+        teamServiceInstance.saveOrUpdate(teamAway);
     }
 }

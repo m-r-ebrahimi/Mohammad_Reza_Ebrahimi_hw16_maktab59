@@ -1,12 +1,10 @@
 package menu;
 
-import entity.Coach;
 import entity.Player;
+import entity.Team;
 import menu.base.CrudMenu;
 import menu.base.Menu;
-import service.CoachService;
-import service.PlayerService;
-import service.TeamService;
+import service.impl.TeamService;
 
 import java.util.Date;
 
@@ -71,7 +69,7 @@ public class PlayerMenu extends Menu implements CrudMenu {
         player.setHireExpiryDate(hireExpiryDate);
         player.setTeam(new TeamService().loadById(teamId));
 
-        new PlayerService().saveOrUpdate(player);
+        playerServiceInstance.saveOrUpdate(player);
     }
 
     @Override
@@ -93,14 +91,14 @@ public class PlayerMenu extends Menu implements CrudMenu {
         int teamId = scanner.nextInt();
         scanner.nextLine();
 
-        Player player = new PlayerService().loadById(id);
+        Player player = (Player) playerServiceInstance.loadById(id);
         player.setName(name);
         player.setSalary(salary);
         player.setHireDate(hireDate);
         player.setHireExpiryDate(hireExpiryDate);
-        player.setTeam(new TeamService().loadById(teamId));
+        player.setTeam((Team) teamServiceInstance.loadById(teamId));
 
-        new PlayerService().saveOrUpdate(player);
+        playerServiceInstance.saveOrUpdate(player);
     }
 
     @Override
@@ -108,7 +106,7 @@ public class PlayerMenu extends Menu implements CrudMenu {
         System.out.println("Enter id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        new PlayerService().delete(id);
+        playerServiceInstance.delete(id);
     }
 
     @Override
@@ -116,11 +114,11 @@ public class PlayerMenu extends Menu implements CrudMenu {
         System.out.println("Enter player id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        System.out.println(new PlayerService().loadById(id));
+        System.out.println(playerServiceInstance.loadById(id));
     }
 
     @Override
     public void loadAll() {
-        System.out.println(new PlayerService().loadAll());
+        System.out.println(playerServiceInstance.loadAll());
     }
 }

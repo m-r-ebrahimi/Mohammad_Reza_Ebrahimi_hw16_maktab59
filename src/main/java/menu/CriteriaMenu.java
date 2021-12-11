@@ -1,15 +1,16 @@
 package menu;
 
-import dao.CoachDao;
-import entity.Team;
 import menu.base.Menu;
-import service.CoachService;
-import service.PlayerService;
-import service.TeamService;
+import service.ServiceFactory;
+import service.base.CrudService;
+import service.impl.CoachService;
+import service.impl.PlayerService;
+import service.impl.TeamService;
 
 import java.util.List;
 
 public class CriteriaMenu extends Menu {
+
     public void menu() {
         selected = 0;
         while (selected != 6) {
@@ -24,13 +25,13 @@ public class CriteriaMenu extends Menu {
             scanner.nextLine();
             switch (selected) {
                 case 1:
-                    System.out.println(new CoachService().getExpensiveCoach());
+                    System.out.println(((CoachService)coachServiceInstance).getExpensiveCoach());
                     break;
                 case 2:
-                    System.out.println(new PlayerService().getExpensivePlayers());
+                    System.out.println(((PlayerService)playerServiceInstance).getExpensivePlayers());
                     break;
                 case 3:
-                    List<Object[]> citiesTeams = new TeamService().getCitiesTeams();
+                    List<Object[]> citiesTeams = ((TeamService)teamServiceInstance).getCitiesTeams();
                     System.out.println("city : number of teams -> ");
                     for(Object[] obj:citiesTeams){
                         System.out.println(obj[0] + " : "+obj[1].toString());
@@ -38,7 +39,7 @@ public class CriteriaMenu extends Menu {
                     System.out.println("***************************");
                     break;
                 case 4:
-                    List<Object[]> teamsPoints = new TeamService().getTeamsPoints();
+                    List<Object[]> teamsPoints = ((TeamService)teamServiceInstance).getTeamsPoints();
                     System.out.println("team : points -> ");
                     for(Object[] obj:teamsPoints){
                         System.out.println(obj[0].toString()+" : "+obj[1].toString());

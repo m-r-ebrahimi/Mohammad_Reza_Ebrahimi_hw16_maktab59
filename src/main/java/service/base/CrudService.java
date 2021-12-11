@@ -9,6 +9,12 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class CrudService<T extends BaseEntity, ID extends Number> {
+
+    public enum Type {
+        BALL, COACH, PLAYER, PLAY_SOCCER, STADIUM, TEAM
+    }
+
+
     private static final EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("jpa-maktab");
     private static final EntityManager entityManager = entityManagerFactory.createEntityManager();

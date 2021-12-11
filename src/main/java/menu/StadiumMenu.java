@@ -3,13 +3,11 @@ package menu;
 import entity.Stadium;
 import menu.base.CrudMenu;
 import menu.base.Menu;
-import service.BallService;
-import service.StadiumService;
 
 public class StadiumMenu extends Menu implements CrudMenu {
 
     public void menu() throws IllegalAccessException {
-        selected=0;
+        selected = 0;
         while (selected != 6) {
             System.out.println("""
                     1) Add
@@ -48,13 +46,13 @@ public class StadiumMenu extends Menu implements CrudMenu {
     @Override
     public void add() {
         System.out.println("Enter name:");
-        String name=scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Enter city name:");
-        String city=scanner.nextLine();
+        String city = scanner.nextLine();
         Stadium stadium = new Stadium();
         stadium.setName(name);
         stadium.setCityName(city);
-        new StadiumService().saveOrUpdate(stadium);
+        stadiumServiceInstance.saveOrUpdate(stadium);
     }
 
     @Override
@@ -63,13 +61,13 @@ public class StadiumMenu extends Menu implements CrudMenu {
         int id = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Enter new name:");
-        String name=scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Enter new city name:");
-        String city=scanner.nextLine();
-        Stadium stadium = new StadiumService().loadById(id);
+        String city = scanner.nextLine();
+        Stadium stadium = (Stadium) stadiumServiceInstance.loadById(id);
         stadium.setName(name);
         stadium.setCityName(city);
-        new StadiumService().saveOrUpdate(stadium);
+        stadiumServiceInstance.saveOrUpdate(stadium);
     }
 
     @Override
@@ -77,7 +75,7 @@ public class StadiumMenu extends Menu implements CrudMenu {
         System.out.println("Enter stadium id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        new StadiumService().delete(id);
+        stadiumServiceInstance.delete(id);
     }
 
     @Override
@@ -85,11 +83,11 @@ public class StadiumMenu extends Menu implements CrudMenu {
         System.out.println("Enter stadium id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        System.out.println(new StadiumService().loadById(id));
+        System.out.println(stadiumServiceInstance.loadById(id));
     }
 
     @Override
     public void loadAll() {
-        System.out.println(new StadiumService().loadAll());
+        System.out.println(stadiumServiceInstance.loadAll());
     }
 }

@@ -1,17 +1,15 @@
 package menu;
 
 import entity.Coach;
+import entity.Team;
 import menu.base.CrudMenu;
 import menu.base.Menu;
-import service.CoachService;
-import service.TeamService;
 
 import java.util.Date;
 
 public class CoachMenu extends Menu implements CrudMenu {
-
     public void menu() throws IllegalAccessException {
-        selected=0;
+        selected = 0;
         while (selected != 6) {
             System.out.println("""
                     1) Add
@@ -47,21 +45,20 @@ public class CoachMenu extends Menu implements CrudMenu {
     }
 
 
-
     @Override
     public void add() throws IllegalAccessException {
         System.out.println("Enter coach name:");
-        String name=scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Enter salary:");
-        double salary=scanner.nextDouble();
+        double salary = scanner.nextDouble();
         scanner.nextLine();
 
         System.out.println("Enter hire date");
-        Date hireDate=new Date(scanner.nextLine());
+        Date hireDate = new Date(scanner.nextLine());
         System.out.println("Enter hire expiry date");
-        Date hireExpiryDate=new Date(scanner.nextLine());
+        Date hireExpiryDate = new Date(scanner.nextLine());
         System.out.println("Enter team id");
-        int teamId= scanner.nextInt();
+        int teamId = scanner.nextInt();
         scanner.nextLine();
 
         Coach coach = new Coach();
@@ -69,46 +66,46 @@ public class CoachMenu extends Menu implements CrudMenu {
         coach.setSalary(salary);
         coach.setHireDate(hireDate);
         coach.setHireExpiryDate(hireExpiryDate);
-        coach.setTeam(new TeamService().loadById(teamId));
+        coach.setTeam((Team) teamServiceInstance.loadById(teamId));
 
-        new CoachService().saveOrUpdate(coach);
+        coachServiceInstance.saveOrUpdate(coach);
     }
 
     @Override
     public void update() throws IllegalAccessException {
         System.out.println("Enter id:");
-        int id=scanner.nextInt();
+        int id = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Enter new name:");
-        String name=scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Enter new salary:");
-        double salary=scanner.nextDouble();
+        double salary = scanner.nextDouble();
         scanner.nextLine();
 
         System.out.println("Enter hire date");
-        Date hireDate=new Date(scanner.nextLine());
+        Date hireDate = new Date(scanner.nextLine());
         System.out.println("Enter hire expiry date");
-        Date hireExpiryDate=new Date(scanner.nextLine());
+        Date hireExpiryDate = new Date(scanner.nextLine());
         System.out.println("Enter new team id");
-        int teamId= scanner.nextInt();
+        int teamId = scanner.nextInt();
         scanner.nextLine();
 
-        Coach coach = new CoachService().loadById(id);
+        Coach coach = (Coach) coachServiceInstance.loadById(id);
         coach.setName(name);
         coach.setSalary(salary);
         coach.setHireDate(hireDate);
         coach.setHireExpiryDate(hireExpiryDate);
-        coach.setTeam(new TeamService().loadById(teamId));
+        coach.setTeam((Team) teamServiceInstance.loadById(teamId));
 
-        new CoachService().saveOrUpdate(coach);
+        coachServiceInstance.saveOrUpdate(coach);
     }
 
     @Override
     public void delete() throws IllegalAccessException {
         System.out.println("Enter id:");
-        int id=scanner.nextInt();
+        int id = scanner.nextInt();
         scanner.nextLine();
-        new CoachService().delete(id);
+        coachServiceInstance.delete(id);
     }
 
     @Override
@@ -116,11 +113,11 @@ public class CoachMenu extends Menu implements CrudMenu {
         System.out.println("Enter coach id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        System.out.println(new CoachService().loadById(id));
+        System.out.println(coachServiceInstance.loadById(id));
     }
 
     @Override
     public void loadAll() {
-        System.out.println(new CoachService().loadAll());
+        System.out.println(coachServiceInstance.loadAll());
     }
 }

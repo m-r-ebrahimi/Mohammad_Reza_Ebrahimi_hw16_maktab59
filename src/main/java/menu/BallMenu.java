@@ -3,11 +3,10 @@ package menu;
 import entity.Ball;
 import menu.base.CrudMenu;
 import menu.base.Menu;
-import service.BallService;
 
 public class BallMenu extends Menu implements CrudMenu {
     public void menu() throws IllegalAccessException {
-        selected=0;
+        selected = 0;
         while (selected != 6) {
             System.out.println("""
                     1) Add
@@ -49,7 +48,7 @@ public class BallMenu extends Menu implements CrudMenu {
         String name = scanner.nextLine();
         Ball ball = new Ball();
         ball.setBallName(name);
-        new BallService().saveOrUpdate(ball);
+        ballServiceInstance.saveOrUpdate(ball);
     }
 
     @Override
@@ -59,9 +58,9 @@ public class BallMenu extends Menu implements CrudMenu {
         scanner.nextLine();
         System.out.println("Enter new name:");
         String newName = scanner.nextLine();
-        Ball ball = new BallService().loadById(id);
+        Ball ball = (Ball) ballServiceInstance.loadById(id);
         ball.setBallName(newName);
-        new BallService().saveOrUpdate(ball);
+        ballServiceInstance.saveOrUpdate(ball);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class BallMenu extends Menu implements CrudMenu {
         System.out.println("Enter ball id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        new BallService().delete(id);
+        ballServiceInstance.delete(id);
     }
 
     @Override
@@ -77,11 +76,11 @@ public class BallMenu extends Menu implements CrudMenu {
         System.out.println("Enter ball id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        System.out.println(new BallService().loadById(id));
+        System.out.println(ballServiceInstance.loadById(id));
     }
 
     @Override
     public void loadAll() {
-        System.out.println(new BallService().loadAll());
+        System.out.println(ballServiceInstance.loadAll());
     }
 }

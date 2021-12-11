@@ -1,10 +1,8 @@
 package menu;
 
 import entity.Team;
-import entity.Team;
 import menu.base.CrudMenu;
 import menu.base.Menu;
-import service.TeamService;
 
 public class TeamMenu extends Menu implements CrudMenu {
 
@@ -55,7 +53,7 @@ public class TeamMenu extends Menu implements CrudMenu {
         Team team = new Team();
         team.setName(name);
         team.setCityName(city);
-        new TeamService().saveOrUpdate(team);
+        teamServiceInstance.saveOrUpdate(team);
     }
 
     @Override
@@ -67,10 +65,10 @@ public class TeamMenu extends Menu implements CrudMenu {
         String name=scanner.nextLine();
         System.out.println("Enter new city name:");
         String city=scanner.nextLine();
-        Team team = new TeamService().loadById(id);
+        Team team = (Team) teamServiceInstance.loadById(id);
         team.setName(name);
         team.setCityName(city);
-        new TeamService().saveOrUpdate(team);
+        teamServiceInstance.saveOrUpdate(team);
     }
 
     @Override
@@ -78,7 +76,7 @@ public class TeamMenu extends Menu implements CrudMenu {
         System.out.println("Enter team id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        new TeamService().delete(id);
+        teamServiceInstance.delete(id);
     }
 
     @Override
@@ -86,11 +84,11 @@ public class TeamMenu extends Menu implements CrudMenu {
         System.out.println("Enter team id:");
         int id = scanner.nextInt();
         scanner.nextLine();
-        System.out.println(new TeamService().loadById(id));
+        System.out.println(teamServiceInstance.loadById(id));
     }
 
     @Override
     public void loadAll() {
-        System.out.println(new TeamService().loadAll());
+        System.out.println(teamServiceInstance.loadAll());
     }
 }
