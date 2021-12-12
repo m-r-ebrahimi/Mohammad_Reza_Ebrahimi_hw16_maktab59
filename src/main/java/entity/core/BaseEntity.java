@@ -9,6 +9,8 @@ public abstract class BaseEntity implements BaseEntityInterface<Integer> {
     @Column(name = "id")
     private Integer id;
 
+    public BaseEntity() {
+    }
 
     @Override
     public String toString() {

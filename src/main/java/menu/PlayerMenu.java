@@ -62,12 +62,13 @@ public class PlayerMenu extends Menu implements CrudMenu {
         int teamId = scanner.nextInt();
         scanner.nextLine();
 
-        Player player = new Player();
-        player.setName(name);
-        player.setSalary(salary);
-        player.setHireDate(hireDate);
-        player.setHireExpiryDate(hireExpiryDate);
-        player.setTeam(new TeamService().loadById(teamId));
+        Player player =
+                Player.playerBuilder()
+                        .setName(name)
+                        .setSalary(salary)
+                        .setHireDate(hireDate)
+                        .setHireExpiryDate(hireExpiryDate)
+                        .setTeam((Team) teamServiceInstance.loadById(teamId)).createPlayer();
 
         playerServiceInstance.saveOrUpdate(player);
     }

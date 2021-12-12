@@ -1,9 +1,6 @@
 package menu;
 
-import entity.Ball;
-import entity.PlaySoccer;
-import entity.Stadium;
-import entity.Team;
+import entity.*;
 import menu.base.CrudMenu;
 import menu.base.Menu;
 
@@ -79,16 +76,19 @@ public class PlaySoccerMenu extends Menu implements CrudMenu {
             teamHomePoint = 1;
             teamAwayPoint = 1;
         }
-        PlaySoccer playSoccer = new PlaySoccer();
-        playSoccer.setMatchDate(date);
-        playSoccer.setStadium(stadium);
-        playSoccer.setTeamHome(teamHome);
-        playSoccer.setTeamAway(teamAway);
-        playSoccer.setBall(ball);
-        playSoccer.setTeamHomeGoals(teamHomeGoal);
-        playSoccer.setTeamAwayGoals(teamAwayGoal);
-        playSoccer.setTeamHomePoints(teamHomePoint);
-        playSoccer.setTeamAwayPoints(teamAwayPoint);
+        PlaySoccer playSoccer =
+                PlaySoccer.playSoccerBuilder()
+                        .setMatchDate(date)
+                        .setStadium(stadium)
+                        .setTeamHome(teamHome)
+                        .setTeamAway(teamAway)
+                        .setBall(ball)
+                        .setTeamHomeGoals(teamHomeGoal)
+                        .setTeamAwayGoals(teamAwayGoal)
+                        .setTeamHomePoints(teamHomePoint)
+                        .setTeamAwayPoints(teamAwayPoint)
+                        .createPlaySoccer();
+
         playSoccerServiceInstance.saveOrUpdate(playSoccer);
         teamHome.setScore(teamHome.getScore() + teamHomePoint);
         teamAway.setScore(teamAway.getScore() + teamAwayPoint);

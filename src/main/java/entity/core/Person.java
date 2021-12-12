@@ -1,10 +1,9 @@
 package entity.core;
 
-import entity.Team;
+import entity.Player;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
 import java.util.Date;
 
 @MappedSuperclass
@@ -17,6 +16,14 @@ public abstract class Person extends BaseEntity {
     private Date hireDate;
     @Column
     private Date hireExpiryDate;
+
+    public Person(String name, double salary, Date hireDate, Date hireExpiryDate) {
+        super();
+        this.name = name;
+        this.salary = salary;
+        this.hireDate = hireDate;
+        this.hireExpiryDate = hireExpiryDate;
+    }
 
     public Person() {
         super();
@@ -70,5 +77,45 @@ public abstract class Person extends BaseEntity {
                 ", hireDate=" + hireDate +
                 ", hireExpiryDate=" + hireExpiryDate +
                 ", ";
+    }
+
+    public static PersonBuilder personBuilder() {
+        return new PersonBuilder();
+    }
+
+    public static class PersonBuilder {
+        private String name;
+        private double salary;
+        private Date hireDate;
+        private Date hireExpiryDate;
+
+        public PersonBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public PersonBuilder setSalary(double salary) {
+            this.salary = salary;
+            return this;
+        }
+
+        public PersonBuilder setHireDate(Date hireDate) {
+            this.hireDate = hireDate;
+            return this;
+        }
+
+        public PersonBuilder setHireExpiryDate(Date hireExpiryDate) {
+            this.hireExpiryDate = hireExpiryDate;
+            return this;
+        }
+
+        public Person createPerson() {
+            return new Person(name, salary, hireDate, hireExpiryDate) {
+                @Override
+                public String getClassName() {
+                    return Person.class.getName();
+                }
+            };
+        }
     }
 }

@@ -61,12 +61,14 @@ public class CoachMenu extends Menu implements CrudMenu {
         int teamId = scanner.nextInt();
         scanner.nextLine();
 
-        Coach coach = new Coach();
-        coach.setName(name);
-        coach.setSalary(salary);
-        coach.setHireDate(hireDate);
-        coach.setHireExpiryDate(hireExpiryDate);
-        coach.setTeam((Team) teamServiceInstance.loadById(teamId));
+        Coach coach =
+                Coach.coachBuilder()
+                        .setName(name)
+                        .setSalary(salary)
+                        .setHireDate(hireDate)
+                        .setHireExpiryDate(hireExpiryDate)
+                        .setTeam((Team) teamServiceInstance.loadById(teamId)).createCoach();
+
 
         coachServiceInstance.saveOrUpdate(coach);
     }
