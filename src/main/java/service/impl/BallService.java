@@ -5,17 +5,13 @@ import entity.Ball;
 import service.base.CrudService;
 
 public class BallService extends CrudService<Ball, Integer> {
-    private static BallService ballService;
+
+    private static final class BallServiceHolder {
+        private static final BallService ballService = new BallService();
+    }
 
     public static BallService getInstance() {
-        if (ballService == null) {
-            synchronized (BallService.class) {
-                if (ballService == null) {
-                    ballService = new BallService();
-                }
-            }
-        }
-        return ballService;
+        return BallServiceHolder.ballService;
     }
 
     private BallService() {
